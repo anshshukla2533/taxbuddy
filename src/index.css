@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    /* Core brand colors - Trust-focused fintech palette */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary: Deep Teal - Trust & Professionalism */
+    --primary: 175 60% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Soft slate */
+    --secondary: 210 15% 95%;
+    --secondary-foreground: 215 25% 25%;
+
+    --muted: 210 15% 93%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Accent: Emerald Green - Growth & Money */
+    --accent: 152 60% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 175 60% 30%;
+
+    --radius: 0.75rem;
+
+    /* Extended palette */
+    --success: 152 60% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --info: 199 89% 48%;
+    --info-foreground: 0 0% 100%;
+
+    /* Gradient tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(175 60% 30%) 0%, hsl(175 50% 40%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(152 60% 45%) 0%, hsl(160 55% 50%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(175 30% 95%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 20% 99%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(45 93% 55%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.07), 0 2px 4px -2px hsl(215 25% 15% / 0.05);
+    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.08), 0 4px 6px -4px hsl(215 25% 15% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(215 25% 15% / 0.1), 0 8px 10px -6px hsl(215 25% 15% / 0.05);
+    --shadow-glow: 0 0 40px hsl(175 60% 30% / 0.15);
+    --shadow-card: 0 4px 20px hsl(215 25% 15% / 0.06);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 215 25% 25%;
+    --sidebar-primary: 175 60% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 15% 95%;
+    --sidebar-accent-foreground: 215 25% 25%;
+    --sidebar-border: 210 20% 92%;
+    --sidebar-ring: 175 60% 30%;
+  }
+
+  .dark {
+    --background: 215 25% 10%;
+    --foreground: 210 20% 95%;
+
+    --card: 215 25% 13%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 215 25% 13%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 175 55% 45%;
+    --primary-foreground: 215 25% 10%;
+
+    --secondary: 215 20% 18%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 215 20% 18%;
+    --muted-foreground: 210 15% 60%;
+
+    --accent: 152 55% 50%;
+    --accent-foreground: 215 25% 10%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 20% 20%;
+    --input: 215 20% 20%;
+    --ring: 175 55% 45%;
+
+    --success: 152 55% 50%;
+    --warning: 38 90% 55%;
+    --info: 199 85% 55%;
+
+    --gradient-hero: linear-gradient(180deg, hsl(215 25% 10%) 0%, hsl(215 30% 8%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(215 25% 13%) 0%, hsl(215 25% 11%) 100%);
+
+    --sidebar-background: 215 25% 10%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 175 55% 45%;
+    --sidebar-primary-foreground: 215 25% 10%;
+    --sidebar-accent: 215 20% 18%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 20% 18%;
+    --sidebar-ring: 175 55% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background: var(--gradient-primary);
+  }
+
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent;
+    background: var(--gradient-accent);
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply backdrop-blur-xl bg-card/80 border border-border/50;
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    @apply relative;
+  }
+  
+  .animated-underline::after {
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 content-[''];
+  }
+  
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Pulse animation for trust badges */
+  .pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* Float animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Fade in up animation */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger children animations */
+  .stagger-children > * {
+    @apply animate-fade-in-up;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+}
