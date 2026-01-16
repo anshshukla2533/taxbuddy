@@ -1,14 +1,25 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 from typing import Optional
 from datetime import datetime
 
 class UserBase(BaseModel):
     email: EmailStr
-    username: str
-    full_name: Optional[str] = None
+    username: str = Field(..., min_length=3, max_length=50)
+    full_name: Optional[str] = Field(None, max_length=100)
 
 class UserCreate(UserBase):
-    password: str = Field(..., min_length=8)
+    password: str = Field(..., min_length=8, max_length=100)
+    
+    @field_validator('password')
+    @classmethod
+    def validate_password(cls, v):
+        if not any(char.isdigit() for char in v):
+            raise ValueError('Password must contain at least one digit')
+        if not any(char.isupper() for char in v):
+            raise ValueError('Password must contain at least one uppercase letter')
+        if not any(char.islower() for char in v):
+            raise ValueError('Password must contain at least one lowercase letter')
+        return v
 
 class UserLogin(BaseModel):
     username: str
@@ -19,7 +30,7 @@ class UserUpdate(BaseModel):
     full_name: Optional[str] = None
     password: Optional[str] = None
 
-class User(UserBase):
+class UserResponse(UserBase):
     id: int
     is_active: bool
     is_verified: bool
@@ -31,7 +42,8 @@ class User(UserBase):
 
 class Token(BaseModel):
     access_token: str
-    token_type: strS
+    token_type: str = "bearer"
 
 class TokenData(BaseModel):
     user_id: Optional[int] = None
+    username: Optional[str] = None
